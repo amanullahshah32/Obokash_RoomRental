@@ -76,6 +76,32 @@
     background-color: #fafcfd;
     color: #5b9bd1;
     }
+    .profile-usermenu ul li.active {
+    border-bottom: none;
+    }
+    .profile-usermenu ul li.active a {
+    color: #5b9bd1;
+    background-color: #f6f9fb;
+    border-left: 2px solid #5b9bd1;
+    margin-left: -2px;
+    }
+    /* Profile Content */
+    .profile-content {
+    padding: 20px;
+    background: #fff;
+    min-height: 460px;
+    }
+    a, button, code, div, img, input, label, li, p, pre, select, span, svg, table, td, textarea, th, ul {
+    -webkit-border-radius: 0!important;
+    -moz-border-radius: 0!important;
+    border-radius: 0!important;
+    }
+    .dashboard-stat, .portlet {
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+    }
     
     .portlet {
     margin-top: 0;
@@ -168,4 +194,189 @@
         </form>
     </div>
 </nav>
+{%endblock%}
+{%block body%}
+<div class="w3-container" style="margin-top:1%; margin-left: 10%; margin-right: 10%; margin-bottom: 1%;">
+    
+    <div class="row profile">
+        <div class="col-md-3">
+            <div class="profile-sidebar">
+              
+                <div class="profile-userpic">
+                    <center>
+                        <img src="{%static 'assets/user.png'%}" alt="">
+                    </center>
+                </div>
+               
+                <div class="profile-usertitle">
+                    <div class="profile-usertitle-name">
+                        {{user.name}}
+                    </div>
+                    <div class="profile-usertitle-job">
+                        Obokash USER
+                    </div>
+                </div>
+                
+                <div class="profile-usermenu">
+                    <ul class="nav">
+                        <li class="active">
+                            <a href="#">
+                            <i class="glyphicon glyphicon-home"></i>
+                            Overview </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                            <i class="glyphicon glyphicon-user"></i>
+                            Account Settings </a>
+                        </li>
+                        <!-- <li>
+                            <a href="#">
+                            <i class="glyphicon glyphicon-ok"></i>
+                            Tasks </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                            <i class="glyphicon glyphicon-flag"></i>
+                            Help </a>
+                        </li> -->
+                    </ul>
+                </div>
+               
+                <div class="portlet light bordered">
+                    <div class="row list-separated profile-stat">
+                        <div class="col-md-4 col-sm-4 col-xs-6">
+                            <div class="uppercase profile-stat-title"> {{roomno}} </div>
+                            <div class="uppercase profile-stat-text">Room posted </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-6">
+                            <div class="uppercase profile-stat-title"> {{houseno}} </div>
+                            <div class="uppercase profile-stat-text"> House posted </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-6">
+                            <div class="uppercase profile-stat-title"> {{reportno}} </div>
+                            <div class="uppercase profile-stat-text"> Reports </div>
+                        </div>
+                    </div>
+                   
+                    <div>
+                        <h4 class="profile-desc-title">About {{user.name}}</h4>
+                        <span class="profile-desc-text">Authenticated user of the Obokash RoomRental.
+                        Have permission to post ads on the site.
+                        </span>
+                        <div class="margin-top-20 profile-desc-link">
+                            <i class="fa fa-globe"></i>
+                            <a href="https://www.gmail.com">{{user.email}}</a>
+                        </div>
+                        <div class="margin-top-20 profile-desc-link">
+                            <i class="fa fa-phone"></i>
+                            <a href="#">{{user.number}}</a>
+                        </div>
+                        <div class="margin-top-20 profile-desc-link">
+                            <i class="fa fa-map-pin w3-margin-right"></i>
+                            <a href="https://www.google.com/maps/place/{{user.location}}">{{user.location}}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="profile-content">
+
+                 {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-success alert-dismissible" role="alert">
+                          <strong>{{ message }}</strong> 
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+                
+
+
+                {% if room %}
+                <h5 class="my-4" style="text-align: center;"> Rooms - Posted by You.</h5>
+                <div class="w3-row-padding">
+                    <div class="col carousel slide my-3" data-ride="carousel">
+                        <div class="carousel-inner no-padding">
+                            <div class="carousel-item active">
+                                {% for i in room.0%}
+                                <div class="w3-third w3-container w3-margin-bottom ">
+                                    <div class="card" style=" background-color: #e9ecef;">
+                                        <img src='{{i.img.url}}' class="w3-hover-opacity" style="height: 250px; width: 100%" alt="...">
+                                        <div class="card-body">
+                                            <p>{{i.room_id}}</p>
+                                            <p>{{i.cost}}</p>
+                                            <p>{{i.location}}</p>
+                                            <form action="/deleter">
+                                                <button name="id" value="{{i.room_id}}"  type="submit" class="btn btn-sm w3-dark-grey">Delete</button>
+                                            </form>
+                                            <form action="/descr"  style="margin-bottom: 5px;">
+                                                <button name="id" value="{{i.room_id}}" class="btn btn-sm w3-blue"> Quick view</button>
+                                            </form> 
+                                        </div>
+                                    </div>
+                                </div>
+                                {% if forloop.counter|divisibleby:3 and forloop.counter > 0 and forloop.counter < room.2 %}
+                            </div>
+                            <div class="carousel-item">
+                                {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    </a>
+                </div>
+                {% endif %}
+
+                 <div class="profile-userbuttons">
+                    <a href="/post/"><button type="submit" class="btn btn-success btn-sm">Post ad for Rooms</button>
+                    </a>
+                </div>
+
+                {% if house %}
+                <h5 class="my-4" style="text-align: center;"> Houses - Posted by You.</h5>
+                <div class="w3-row-padding">
+                    <div class="col carousel slide my-3" data-ride="carousel">
+                        <div class="carousel-inner no-padding">
+                            <div class="carousel-item active">
+                                {% for i in house.0%}
+                                <div class="w3-third w3-container w3-margin-bottom">
+                                    <div class="card" style=" background-color: #e9ecef;">
+                                        <img src='{{i.img.url}}' class="w3-hover-opacity" style="height: 250px; width: 100%" alt="...">
+                                        <div class="card-body">
+                                            <p>{{i.house_id}}</p>
+                                            <p>{{i.cost}}</p>
+                                            <p>{{i.location}}</p>
+                                            <form action="/deleteh" >
+                                                <button name="id" value="{{i.house_id}}"  type="submit" class="btn btn-sm w3-dark-grey">Delete</button>
+                                            </form>
+                                            <form action="/descr"  style="margin-bottom: 5px;">
+                                                <button name="id" value="{{i.house_id}}" class="btn  btn-sm w3-blue"> Quick view</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% if forloop.counter|divisibleby:3 and forloop.counter > 0 and forloop.counter < house.2 %}
+                            </div>
+                            <div class="carousel-item">
+                                {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                
+
+
+                <div class="profile-userbuttons">
+                    <a href="/posth/"><button type="submit" class="btn btn-success btn-sm">Post ad for House</button></a>
+                </div>
+                
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
 {%endblock%}
