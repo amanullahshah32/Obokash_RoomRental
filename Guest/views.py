@@ -25,3 +25,25 @@ def home(request):
     return HttpResponse(template.render(context, request))
 
 
+def contact(request):
+    template = loader.get_template('contact.html')
+    context = {}
+
+    if request.method == 'POST':
+        subject = request.POST['subject']
+        email = request.POST['email']
+        body = request.POST['body']
+        regex = '^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$'
+        if re.search(regex, email):
+            pass
+        else:
+            template = loader.get_template('register.html')
+            context.update({'msg': 'invalid email'})
+            return HttpResponse(template.render(context, request))
+        contact = Contact(subject=subject, email=email, body=body)
+        contact.save()
+        context.update({'msg': 'msg send to admin'})
+        return HttpResponse(template.render(context, request))
+    else:
+        context.update({'msg': ''})
+        return HttpResponse(template.render(context, request))
