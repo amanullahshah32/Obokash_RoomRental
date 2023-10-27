@@ -20,6 +20,7 @@ from django.urls import path
 urlpatterns = [
     path('admin/', admin.site.urls),
     re_path(r'^login', views.login_view),
+    re_path(r'^about/',views.about),
     
     
 ]
