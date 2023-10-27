@@ -14,3 +14,20 @@ import re
 import os
 from django.contrib import messages
 
+def login_view(request):
+    if request.method == 'GET':
+        return render(request, 'login.html')
+
+    email = request.POST['email']
+    password = request.POST['password']
+    user = authenticate(request, email=email, password=password)
+
+    if user is not None:
+        login(request, user)
+        return redirect("/")
+    else:
+        template = loader.get_template('login.html')
+        context = {
+            'msg': 'Email and password, you entered, did not matched.'
+        }
+        return HttpResponse(template.render(context, request))
