@@ -21,5 +21,8 @@ urlpatterns = [
     re_path(r'^admin/',admin.site.urls),
     re_path(r'^home/',views.home),
     re_path(r'^contact/', views.contact),
+    re_path(r'^profile/',views.profile),
+    re_path(r'^post/$', views.post),
+    re_path(r'^posth/$', views.posth),
     
 ]
