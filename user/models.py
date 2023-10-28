@@ -152,11 +152,14 @@ class House(models.Model):
 
 
 class Contact(models.Model):
+    
 
     contact_id = models.AutoField(primary_key=True)
     subject = models.CharField(max_length=100)
     email = models.CharField(max_length=100)
     body = models.CharField(max_length=500)
 
+    class Meta: 
+        verbose_name= "Review"
     def __str__(self):
         return str(self.contact_id)

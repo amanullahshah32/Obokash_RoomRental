@@ -159,9 +159,9 @@ def home(request):
     return HttpResponse(template.render(context, request))
 
 
-def contact(request):
+def review(request):
 
-    template = loader.get_template('contact.html')
+    template = loader.get_template('review.html')
     context = {}
 
     if request.method == 'POST':

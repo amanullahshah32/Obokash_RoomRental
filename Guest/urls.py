@@ -33,7 +33,7 @@ urlpatterns = [
     re_path(r'^$', RedirectView.as_view(url='/index/')),
     re_path(r'^index/',views.index),
     re_path(r'^home/',views.home),
-	re_path(r'^contact/', views.contact),
+	re_path(r'^review/', views.review),
     re_path(r'^about/',views.about),
 	re_path(r'^admin/',admin.site.urls),
     re_path(r'^user/',include('user.urls')),
