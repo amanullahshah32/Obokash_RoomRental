@@ -281,4 +281,20 @@ def descr(request):
             user = User.objects.get(email=house.user_email)
     context.update({'user': user})
     return HttpResponse(template.render(context, request))
+def index(request):
+    template = loader.get_template('index.html')
+    context = {}
 
+    room = Room.objects.all()
+    if bool(room):
+        n = len(room)
+        nslide = n // 3 + (n % 3 > 0)
+        rooms = [room, range(1, nslide), n]
+        context.update({'room': rooms})
+    house = House.objects.all()
+    if bool(house):
+        n = len(house)
+        nslide = n // 3 + (n % 3 > 0)
+        houses = [house, range(1, nslide), n]
+        context.update({'house': houses})
+    return HttpResponse(template.render(context, request))
