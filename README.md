@@ -14,7 +14,7 @@ It is made using the Django framework of Python.
 
 1. Install python  in your system. (https://www.python.org/downloads/)
 2. Install djnago in your system using pip command in command prompt. (pip install django)
-3. Download the Obokash RoomRental repository in zip file or clone it using git. Command this line in terminal of your vs code in your project directory.                         (git clone https://github.com/cyclades1/Rental.git)
+3. Download the Obokash RoomRental repository in zip file or clone it using git. Command this line in terminal of your vs code in your project directory.                         (git clone https://github.com/amanullahshah32/Obokash_RoomRental.git)
 4. Run system on localhost by the running the manage.py python file. (python manage.py runserver)
 
 ## Screenshots
