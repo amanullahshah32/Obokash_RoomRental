@@ -184,6 +184,9 @@ def review(request):
         return HttpResponse(template.render(context, request))
     
 
+def recommendation(request):
+    return render(request, 'recommendation.html')
+
 @login_required(login_url='/login')
 def post(request):
     if request.method == "GET":

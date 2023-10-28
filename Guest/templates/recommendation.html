@@ -1,0 +1,301 @@
+<html lang="en">
+<head>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css" integrity="sha512-wR4oNhLBHf7smjy0K4oqzdWumd+r5/+6QO/vDda76MW5iug4PT7v86FoEkySIJft3XA0Ae6axhIvHrqwm793Nw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://kit.fontawesome.com/c4882e8ca1.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> Title </title>
+</head>
+<body>
+
+<style>
+    body{
+        background-image: url(image/pexels-karolina-grabowska-4047146.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+    .navbar{
+    background-color: rgba(255, 255, 255, 0.568);
+    padding: 1rem;
+}
+
+.slide{
+    max-width: 45rem;
+}
+.faq{
+    background-color: rgba(0, 0, 0, 0.703); 
+}
+
+#accordion h3{
+    background-color: rgb(207, 207, 207);
+    color:rgba(5, 5, 5, 0.756);
+    font-weight: 800;
+    border-radius: .5rem;
+    margin-top: .5rem;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+#accordion p{
+    padding: 1rem;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    max-width:35rem;
+    overflow-y: hidden;
+}
+
+#accordion div{
+    border-radius: 1rem;
+}
+.first-part{
+    justify-content: space-around;
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 2rem;
+    box-shadow: 1px 1px 3px rgb(54, 52, 52);
+    padding: 2rem;
+    margin-top: 5rem;
+    background-color: rgba(0, 0, 0, 0.193);
+}
+
+.card:hover{
+    border: 2px solid white;
+}
+.cards-sec{
+justify-content:space-around;
+}
+@media(max-width:986px){
+    .first-part{
+       flex-direction: column;
+    }
+    .cards-sec{
+        flex-direction: column;
+        place-items: center;
+    }
+        .card{
+            margin-top: 2rem;
+        }
+    }
+    .my-slide-up-section {
+    opacity: 0; /* Start with zero opacity */
+    transform: translateY(50px); /* Start with a slight translateY */
+    transition: opacity 0.5s, transform 0.5s; /* Add smooth transitions */
+}
+
+.my-slide-up-section.active {
+    opacity: 1; /* Show the section */
+    transform: translateY(0); /* Reset translateY */
+}
+</style>
+
+
+<header>
+    <nav id="nav" class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#nav"><i class="fa-brands fa-airbnb fw-bolder text-gradiant text-danger"></i><span> Developer </span></a>
+          <div class="navbar-toggler" type="" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"> <i class="fa-brands fa-mendeley"></i></span>
+          </div>
+          <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="#nav">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#about">About Us</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#service">Service</a>
+              </li>
+              <li class="nav-item just">
+                <a class="nav-link" href="#contact">Contact Us</a>
+              </li>
+              <li class="nav-item just call call-li">
+                <a class="btn btn-outline-danger" href="tel:+8801750331389"><i class="fa-solid fa-phone"></i> +8801750331389</a>
+              </li>
+            </ul>
+          </div>
+          <div class="justify-content-end call">
+            <a class="btn btn-outline-danger" href="tel:+8801750331389"><i class="fa-solid fa-phone"></i> +8801750331389</a>
+          </div>
+        </div>
+      </nav>
+
+
+
+
+<!-- first part start -->
+<section class="Container first-part d-flex">
+
+    <div id="carouselExampleInterval" class="carousel slide m-2" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active" data-bs-interval="10000">
+            <img src="Obokash_RoomRental\media\fixed_images\1.png" class="d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item" data-bs-interval="2000">
+            <img src="image/pexels-karolina-grabowska-4047146.jpg" class="d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="image/pexels-karolina-grabowska-4047146.jpg" class="d-block w-100" alt="...">
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+
+
+
+<!-- faq start -->
+
+<div class="m-2">
+
+    <div class="text-center text-light fw-bolder fs-1 pb-5"> FAQ,</div>
+
+<div id="accordion">
+
+<h3 class="">What services do you offer?</h3>
+<div>
+  <p class="my-slide-up-section">I offer web design, giving priority on clients satisfacton, Develop websites and manage hosting, database(MySql database) as well.</p>
+</div>
+<h3 class="my-slide-up-section">How can I contact you?</h3>
+<div>
+  <p>Bottom of the page you will get many ways to reach me such as Email, phone. Use any of it whatever you prefer at any of your comfortable time (7/24 HOURS) </p>
+</div>
+<h3 class="my-slide-up-section">Can you help with website maintenance or updates?</h3>
+<div>
+  <p> Yes. I'm available to manage your websites and able to make necessary changes. </p>
+</div>
+
+</div>
+
+<!-- faq end -->
+
+
+
+</section>
+<!-- first part end -->
+
+</header>
+
+
+
+<!-- cards start -->
+
+<div class="Container text-center mt-5 mb-5">
+
+<div class="m-5 fs-1 fw-bolder text-light">Must Visit</div>
+
+<div class="d-flex cards-sec ">
+
+<div class="card my-slide-up-section" style="width: 18rem;">
+    <img src="image/pexels-thirdman-8940467.jpg" class="card-img-top" alt="...">
+    <div class="card-body">
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <a class="btn btn-outline-secondary" href="index.html"> Learn More <i class="fa-solid fa-arrow-trend-up"></i> </a>
+    </div>
+  </div>
+
+  
+<div class="card my-slide-up-section" style="width: 18rem;">
+    <img src="image/heart-5724137_1920.png" class="card-img-top" alt="...">
+    <div class="card-body">
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <a class="btn btn-outline-secondary" href=""> Learn More <i class="fa-solid fa-arrow-trend-up"></i> </a>
+    </div>
+  </div>
+
+<div class="card my-slide-up-section" style="width: 18rem;">
+    <img src="image/pexels-thirdman-8940467.jpg" class="card-img-top" alt="...">
+    <div class="card-body">
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <a class="btn btn-outline-secondary" href=""> Learn More <i class="fa-solid fa-arrow-trend-up"></i> </a>
+    </div>
+  </div>
+
+</div>
+
+
+<div class="d-flex cards-sec mt-3">
+
+<div class="card my-slide-up-section" style="width: 18rem;">
+    <img src="image/pexels-thirdman-8940467.jpg" class="card-img-top" alt="...">
+    <div class="card-body">
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <a class="btn btn-outline-secondary" href=""> Learn More <i class="fa-solid fa-arrow-trend-up"></i> </a>
+    </div>
+  </div>
+
+<div class="card my-slide-up-section" style="width: 18rem;">
+    <img src="image/pexels-thirdman-8940467.jpg" class="card-img-top" alt="...">
+    <div class="card-body">
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <a class="btn btn-outline-secondary" href=""> Learn More <i class="fa-solid fa-arrow-trend-up"></i> </a>
+    </div>
+  </div>
+
+<div class="card" style="width: 18rem;">
+    <img src="image/pexels-thirdman-8940467.jpg" class="card-img-top" alt="...">
+    <div class="card-body">
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <a class="btn btn-outline-secondary" href=""> Learn More <i class="fa-solid fa-arrow-trend-up"></i> </a>
+    </div>
+  </div>
+
+</div>
+
+</div>
+<!-- cards end -->
+
+
+
+
+<footer class="bg-black">
+ <div class="p-1 text-secondary text-center"> Copyright © 2023 Akib Rahman. All rights Reserved. </div>
+</footer>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js" integrity="sha512-XtmMtDEcNz2j7ekrtHvOVR4iwwaD6o/FUJe6+Zq+HgcCsk3kj4uSQQR8weQ2QVj1o0Pk6PwYLohm206ZzNfubg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <script>
+        // faq
+$( function() {
+    $( "#accordion" ).accordion({
+      collapsible: true
+    });
+  } );
+//   end
+// slide up
+function isInViewport(element) {
+    const rect = element.getBoundingClientRect();
+    return (
+        rect.top >= 0 &&
+        rect.left >= 0 &&
+        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+}
+
+function handleSlideUpSections() {
+    const sections = document.querySelectorAll('.my-slide-up-section');
+    
+    sections.forEach((section) => {
+        if (isInViewport(section) && !section.classList.contains('active')) {
+            section.classList.add('active');
+        }
+    });
+}
+
+window.addEventListener('scroll', handleSlideUpSections);
+// end
+    </script>
+
+
+</body>
+</html>

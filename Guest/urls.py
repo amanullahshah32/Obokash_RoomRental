@@ -46,7 +46,8 @@ urlpatterns = [
     re_path(r'^descr/',views.descr),
     re_path(r'^deleter', views.deleter),
     re_path(r'^deleteh', views.deleteh),
-    re_path(r'^search/', views.search)
+    re_path(r'^search/', views.search),
+    re_path(r'^recommendation/', views.recommendation)
 ]
 
 urlpatterns+= staticfiles_urlpatterns()
