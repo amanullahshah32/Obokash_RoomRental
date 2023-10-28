@@ -36,7 +36,7 @@
                     <input type="text" class="form-control " style="width: 55%;"   name="q" placeholder="Search here..." {%if q%}value="{{q}}"{%endif%} />
                     <select name="type"  style="width: 30%;" class=" col-md-3 col-sm-6 selectpicker form-control" data-live-search="true">
                         <option value="House">House</option>
-                        <option value="Apartment">Apartment</option>
+                        <option value="Apartment">Room</option>
                     </select> 
                     <span class="input-group-btn" style="width: 15%;">
                         <button style="width: 100%;border-radius: 4px;" class="btn btn-primary" type="submit">GO!</button>
@@ -72,7 +72,7 @@
                                     <span id="pricepr{{i.id}}">
                                         <p>
                                             <b>
-                                        <h3>₹{{i.cost}}</h3> </b></p>
+                                        <h3>ট/={{i.cost}}</h3> </b></p>
                                     </span>
                                 </h5>
                                 <p class="card-text">{{i.desc|slice:"0:20"}}...</p>

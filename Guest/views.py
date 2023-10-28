@@ -43,7 +43,7 @@ def login_view(request):
         }
         return HttpResponse(template.render(context, request))
 
-# View for searching houses and apartments
+# View for searching houses and rooms
 def search(request):
     """
     This function handles search queries for houses and apartments.
@@ -77,3 +77,60 @@ def search(request):
         context.update({'result': result})
 
     return HttpResponse(template.render(context, request))
+
+
+# View for registaring users
+def register(request):
+    """
+    This function handles user registration requests.
+
+    Parameters:
+        request (HttpRequest): The HTTP request object.
+
+    Returns:
+        HttpResponse: The HTTP response object.
+    """
+    if request.method == 'GET':
+        return render(request, 'register.html', {'msg': ''})
+
+    name = request.POST['name']
+    email = request.POST['email']
+    location = request.POST['location']
+    city = request.POST['city']
+    phone = request.POST['phone']
+    pas = request.POST['pass']
+    cpas = request.POST['cpass']
+    regex = '^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$'
+    if re.search(regex, email):
+        pass
+    else:
+        template = loader.get_template('register.html')
+        context = {'msg': 'invalid email'}
+        return HttpResponse(template.render(context, request))
+
+    if len(str(phone)) != 11:
+        template = loader.get_template('register.html')
+        context = {'msg': 'invalid phone number'}
+        return HttpResponse(template.render(context, request))
+
+    if pas != cpas:
+        template = loader.get_template('register.html')
+        context = {'msg': 'password did not matched'}
+        return HttpResponse(template.render(context, request))
+    already = User.objects.filter(email=email)
+    if bool(already):
+        template = loader.get_template('register.html')
+        context = {'msg': 'email already registered'}
+        return HttpResponse(template.render(context, request))
+    
+    user = User.objects.create_user(
+        name=name,
+        email=email,
+        location=location,
+        city=city,
+        number=phone,
+        password=pas,
+        )
+    user.save()
+    login(request, user)
+    return redirect("/profile/")
