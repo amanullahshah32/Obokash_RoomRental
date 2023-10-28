@@ -138,6 +138,17 @@ def register(request):
     return redirect("/profile/")
 
 
+def about(request):
+    template = loader.get_template('about.html')
+    context = {}
+
+    room = Room.objects.all()
+    if bool(room):
+        context.update({'room': room})
+    house = House.objects.all()
+    if bool(house):
+        context.update({'house': house})
+    return HttpResponse(template.render(context, request))
 
 
 def home(request):
@@ -281,6 +292,41 @@ def descr(request):
             user = User.objects.get(email=house.user_email)
     context.update({'user': user})
     return HttpResponse(template.render(context, request))
+
+@login_required(login_url='/login')
+def profile(request):
+    report = Contact.objects.filter(email=request.user.email)
+    room = Room.objects.filter(user_email=request.user)
+    house = House.objects.filter(user_email=request.user)
+    roomcnt = room.count()
+    housecnt = house.count()
+    reportcnt = report.count()
+    rooms = []  # Initialize rooms as an empty list
+    houses = []  # Initialize houses as an empty list
+
+    if bool(room):
+        n = len(room)
+        nslide = n // 3 + (n % 3 > 0)
+        rooms = [room, range(1, nslide), n]
+    if bool(house):
+        n = len(house)
+        nslide = n // 3 + (n % 3 > 0)
+        houses = [house, range(1, nslide), n]
+
+    context = {
+        'user': request.user,
+        'report': report,
+        'reportno': reportcnt,
+        'roomno': roomcnt,
+        'houseno': housecnt,
+        'room': rooms,  # Assign rooms to context
+        'house': houses,  # Assign houses to context
+    }
+
+    return render(request, 'profile.html', context=context)
+
+
+
 def index(request):
     template = loader.get_template('index.html')
     context = {}
@@ -298,3 +344,19 @@ def index(request):
         houses = [house, range(1, nslide), n]
         context.update({'house': houses})
     return HttpResponse(template.render(context, request))
+
+def deleter(request):
+    if request.method == 'GET':
+        id = request.GET['id']
+        instance = Room.objects.get(room_id=id)
+        instance.delete()
+        messages.success(request, 'Appartment details deleted successfully..')
+    return redirect('/profile')
+
+def deleteh(request):
+    if request.method == 'GET':
+        id = request.GET['id']
+        instance = House.objects.get(house_id=id)
+        instance.delete()
+        messages.success(request, 'House details deleted successfully..')
+    return redirect('/profile')
