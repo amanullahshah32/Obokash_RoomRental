@@ -5,9 +5,10 @@ Another aspect of the application is that it also provides people with a platfor
 It works as a mediator between the customer and the owner. It also provide you a range of houses based on your preferences, such as cost, location, features, etc.
 It is made using the Django framework of Python.
 
-Members working on this project:
-#### MD. AMANULLAH SHAH
-#### MD MEHEDI HASAN SHISHIR
+## Authors
+
+  #### MD. AMANULLAH SHAH
+  #### MD MEHEDI HASAN SHISHIR
 
 ## How to install:
 
