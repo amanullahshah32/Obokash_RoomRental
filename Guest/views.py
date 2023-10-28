@@ -139,3 +139,22 @@ def posth(request):
             print(e)
             print()
             return HttpResponse(status=500)
+
+
+def descr(request):
+    template = loader.get_template('desc.html')
+    context = {}
+    if request.method == 'GET':
+        id = request.GET['id']
+        try:
+            room = Room.objects.get(room_id=id)
+            context.update({'val': room})
+            context.update({'type': 'Apartment'})
+            user = User.objects.get(email=room.user_email)
+        except:
+            house = House.objects.get(house_id=id)
+            context.update({'val': house})
+            context.update({'type': 'House'})
+            user = User.objects.get(email=house.user_email)
+    context.update({'user': user})
+    return HttpResponse(template.render(context, request))
