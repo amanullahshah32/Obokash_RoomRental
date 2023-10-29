@@ -163,4 +163,4 @@ class Review(models.Model):
         verbose_name= "Review"
         db_table = "review"
     def __str__(self):
-        return str(self.Review_id)
+        return str(self.review_id)
