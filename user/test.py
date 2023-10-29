@@ -42,6 +42,85 @@ class ReviewTestCase(TestCase):
         
         
 
+class UserTestCase(TestCase):
+    def test_create_user(self):
+
+        email = 'abc@gmail.com'
+        name = 'Shishir'
+        password = '1234'
+        location = 'Dhaka'
+        city = 'Mirpur'
+        number = '111111'
+        active = True
+        staff = True
+        admin = True
+
+        user = User.objects.create(
+            email=email,
+            name=name,
+            password=password,
+            location=location,
+            city=city,
+            number=number,
+            active=active,
+            staff=staff,
+            admin=admin
+        )
+
+        self.assertEqual(user.email, email)
+        self.assertEqual(user.name, name)
+        self.assertEqual(user.active, active)
+        self.assertEqual(user.number, number)
+        self.assertEqual(user.admin, admin)
+        self.assertEqual(user.password, password)
+        self.assertEqual(user.city, city)
+def test_model_string_representation(self):
+    fake = Faker()
+    email = fake.email()
+    user = User.objects.create(
+        email=email,
+        name=fake.first_name(),
+        password=fake.password(),
+        location=fake.word(),
+        city=fake.city(),
+        number=fake.random_int(min=100000, max=999999),
+        active=fake.boolean(),
+        staff=fake.boolean(),
+        admin=fake.boolean()
+    )
+
+    self.assertEqual(str(user), email)
+    
+def test_required_fields(self):
+    with self.assertRaises(IntegrityError):
+        # Creating a user without the 'name' field, which is required
+        User.objects.create(
+            email='test@example.com',
+            password='securepassword',
+            location='Somewhere',
+            city='City',
+            number=123456,
+            active=True,
+            staff=False,
+            admin=False
+        )
+def test_model_string_representation(self):
+    fake = Faker()
+    email = fake.email()
+    user = User.objects.create(
+        email=email,
+        name=fake.first_name(),
+        password=fake.password(),
+        location=fake.word(),
+        city=fake.city(),
+        number=fake.random_int(min=100000, max=999999),
+        active=fake.boolean(),
+        staff=fake.boolean(),
+        admin=fake.boolean()
+    )
+
+    self.assertEqual(str(user), email)
+
 
         
 
