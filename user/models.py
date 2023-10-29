@@ -156,7 +156,7 @@ class Contact(models.Model):
 
     contact_id = models.AutoField(primary_key=True)
     subject = models.CharField(max_length=100)
-    email = models.CharField(max_length=100)
+    email = models.EmailField()
     body = models.CharField(max_length=500)
 
     class Meta: 
