@@ -139,6 +139,15 @@ def register(request):
 
 
 def about(request):
+    """
+    Handles requests to display information about the website.
+
+    Parameters:
+        request (HttpRequest): The HTTP request object.
+
+    Returns:
+        HttpResponse: The HTTP response object.
+    """
     template = loader.get_template('about.html')
     context = {}
 
@@ -152,6 +161,15 @@ def about(request):
 
 
 def home(request):
+    """
+    Handles the homepage view, providing the search functionality.
+
+    Parameters:
+        request (HttpRequest): The HTTP request object.
+
+    Returns:
+        HttpResponse: The HTTP response object.
+    """
     template = loader.get_template('home.html')
     context = {}
     context.update({'result': ''})
@@ -160,6 +178,15 @@ def home(request):
 
 
 def review(request):
+    """
+    Handles user reviews and contact requests.
+
+    Parameters:
+        request (HttpRequest): The HTTP request object.
+
+    Returns:
+        HttpResponse: The HTTP response object.
+    """
 
     template = loader.get_template('review.html')
     context = {}
@@ -185,10 +212,28 @@ def review(request):
     
 
 def recommendation(request):
+    """
+    Renders the recommendation page.
+
+    Parameters:
+        request (HttpRequest): The HTTP request object.
+
+    Returns:
+        HttpResponse: The HTTP response object.
+    """
     return render(request, 'recommendation.html')
 
 @login_required(login_url='/login')
 def post(request):
+    """
+    Handles user's posting of room/apartment details.
+
+    Parameters:
+        request (HttpRequest): The HTTP request object.
+
+    Returns:
+        HttpResponse: The HTTP response object.
+    """
     if request.method == "GET":
         context = {'user': request.user}
         return render(request, 'post.html', context)
@@ -232,6 +277,15 @@ def post(request):
 
 @login_required(login_url='/login')
 def posth(request):
+    """
+    Handles user's posting of house details.
+
+    Parameters:
+        request (HttpRequest): The HTTP request object.
+
+    Returns:
+        HttpResponse: The HTTP response object.
+    """
     if request.method == "GET":
         context = {'user': request.user}
         return render(request, 'posth.html', context)
@@ -279,6 +333,15 @@ def posth(request):
 
 
 def descr(request):
+    """
+    Renders the details of a house or apartment.
+
+    Parameters:
+        request (HttpRequest): The HTTP request object.
+
+    Returns:
+        HttpResponse: The HTTP response object.
+    """
     template = loader.get_template('desc.html')
     context = {}
     if request.method == 'GET':
@@ -298,6 +361,15 @@ def descr(request):
 
 @login_required(login_url='/login')
 def profile(request):
+    """
+    Renders the user profile page, displaying user details, posted rooms and houses, and contact reports.
+
+    Parameters:
+        request (HttpRequest): The HTTP request object.
+
+    Returns:
+        HttpResponse: The HTTP response object.
+    """
     report = Review.objects.filter(email=request.user.email)
     room = Room.objects.filter(user_email=request.user)
     house = House.objects.filter(user_email=request.user)
@@ -331,6 +403,15 @@ def profile(request):
 
 
 def index(request):
+    """
+    Renders the home page, displaying a list of rooms and houses.
+
+    Parameters:
+        request (HttpRequest): The HTTP request object.
+
+    Returns:
+        HttpResponse: The HTTP response object.
+    """
     template = loader.get_template('index.html')
     context = {}
 
@@ -349,6 +430,15 @@ def index(request):
     return HttpResponse(template.render(context, request))
 
 def deleter(request):
+    """
+    Deletes an apartment listing based on the provided ID and redirects to the user's profile page.
+
+    Parameters:
+        request (HttpRequest): The HTTP request object.
+
+    Returns:
+        HttpResponseRedirect: Redirects to the user's profile page after deleting the apartment listing.
+    """
     if request.method == 'GET':
         id = request.GET['id']
         instance = Room.objects.get(room_id=id)
@@ -357,6 +447,15 @@ def deleter(request):
     return redirect('/profile')
 
 def deleteh(request):
+    """
+    Deletes a house listing based on the provided ID and redirects to the user's profile page.
+
+    Parameters:
+        request (HttpRequest): The HTTP request object.
+
+    Returns:
+        HttpResponseRedirect: Redirects to the user's profile page after deleting the house listing.
+    """
     if request.method == 'GET':
         id = request.GET['id']
         instance = House.objects.get(house_id=id)
