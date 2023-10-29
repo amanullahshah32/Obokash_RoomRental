@@ -10,7 +10,7 @@ from django.contrib.auth.models import UserManager
 
 class UserManager(BaseUserManager):
 
-    def create_user(self, email, name, location, city, state, number, password=None, is_admin=False, is_staff=False, is_active=True):
+    def create_user(self, email, name, location, city, number, password=None, is_admin=False, is_staff=False, is_active=True):
         if not email:
             raise ValueError('User must have an email')
         if not password:
@@ -23,7 +23,7 @@ class UserManager(BaseUserManager):
         user.set_password(password)
         user.location = location
         user.city = city
-        user.state = state
+        #user.state = state
         user.number = number
         user.admin = is_admin
         user.staff = is_staff
@@ -57,7 +57,7 @@ class User(AbstractBaseUser):
     password = models.CharField(max_length=100)
     location = models.CharField(max_length=50)
     city = models.CharField(max_length=50)
-    state = models.CharField(max_length=50)
+    #state = models.CharField(max_length=50)
     number = models.IntegerField()
     active = models.BooleanField(default=True)
     staff = models.BooleanField(default=False)  # a admin user; non super-user
@@ -111,7 +111,7 @@ class Room(models.Model):
     dimention = models.CharField(max_length=100)
     location = models.CharField(max_length=50)
     city = models.CharField(max_length=50)
-    state = models.CharField(max_length=50)
+    #state = models.CharField(max_length=50)
     cost = models.IntegerField()
     bedrooms = models.IntegerField()
     kitchen = models.CharField(max_length=3)
@@ -135,7 +135,7 @@ class House(models.Model):
     floor = models.IntegerField()
     location = models.CharField(max_length=50)
     city = models.CharField(max_length=50)
-    state = models.CharField(max_length=50)
+   # state = models.CharField(max_length=50)
     cost = models.IntegerField()
     bedrooms = models.IntegerField()
     kitchen = models.IntegerField()
