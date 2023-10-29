@@ -151,15 +151,16 @@ class House(models.Model):
         return str(self.house_id)
 
 
-class Contact(models.Model):
+class Review(models.Model):
     
 
-    contact_id = models.AutoField(primary_key=True)
+    review_id = models.AutoField(primary_key=True)
     subject = models.CharField(max_length=100)
     email = models.CharField(max_length=100)
     body = models.CharField(max_length=500)
 
     class Meta: 
         verbose_name= "Review"
+        db_table = "review"
     def __str__(self):
-        return str(self.contact_id)
+        return str(self.Review_id)

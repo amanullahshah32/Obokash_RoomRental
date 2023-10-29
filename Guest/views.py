@@ -175,8 +175,8 @@ def review(request):
             template = loader.get_template('register.html')
             context.update({'msg': 'invalid email'})
             return HttpResponse(template.render(context, request))
-        contact = Contact(subject=subject, email=email, body=body)
-        contact.save()
+        review = Review(subject=subject, email=email, body=body)
+        review.save()
         context.update({'msg': 'msg send to admin'})
         return HttpResponse(template.render(context, request))
     else:
@@ -298,7 +298,7 @@ def descr(request):
 
 @login_required(login_url='/login')
 def profile(request):
-    report = Contact.objects.filter(email=request.user.email)
+    report = Review.objects.filter(email=request.user.email)
     room = Room.objects.filter(user_email=request.user)
     house = House.objects.filter(user_email=request.user)
     roomcnt = room.count()
